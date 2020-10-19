@@ -10,17 +10,16 @@ export const CriminalList = () => {
             criminalHTMLRepresentation += Criminal(criminal)
         }
         const contentElement = document.querySelector(".criminalsContainer")
-        
+
         contentElement.innerHTML += `
         <h2>Criminals of Glassdale</h2>
         <div class="criminal__boxes">
         ${criminalHTMLRepresentation}
         </div>
         `
-        
+
     }
-        
-        )
-    }
+    )
+}
 
 

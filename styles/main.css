@@ -26,5 +26,16 @@ h1,h2,h3,h4,h5,h6 {
 .criminal__boxes {
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-evenly;
+	justify-content: space-between;
+}
+
+.officer {
+	border: solid 2px black;
+	margin: 1%;
+}
+
+.officer__boxes {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
 }
