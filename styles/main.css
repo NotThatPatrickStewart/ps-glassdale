@@ -18,11 +18,13 @@ h1,h2,h3,h4,h5,h6 {
   letter-spacing: 2px;
 }
 
-.criminalsContainer {
-	display: flex;
-}
-
 .criminal {
 	border: solid 2px black;
-	border-width: auto;
+	margin: 1%;
+}
+
+.criminal__boxes {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
 }

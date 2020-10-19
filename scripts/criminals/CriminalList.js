@@ -12,8 +12,8 @@ export const CriminalList = () => {
         const contentElement = document.querySelector(".criminalsContainer")
         
         contentElement.innerHTML += `
-        <div class="criminal__boxes">
         <h2>Criminals of Glassdale</h2>
+        <div class="criminal__boxes">
         ${criminalHTMLRepresentation}
         </div>
         `
