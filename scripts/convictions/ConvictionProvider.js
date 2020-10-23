@@ -5,7 +5,7 @@ export const useConvictions = () => convictions.slice()
 export const getConvictions = () => {
     return fetch ("https://criminals.glassdale.us/crimes")
     .then(response => {
-        console.log("response before json", response)
+        // console.log("response before json", response)
         return response.json()
     })
     .then(convictionsArray => convictions = convictionsArray)
