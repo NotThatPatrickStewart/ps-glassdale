@@ -3,7 +3,7 @@ import { getOfficers, useOfficers } from "./OffficerProvider.js"
 
 const eventHub = document.querySelector(".container")
 const officerFilter = document.querySelector(".filters__officer")
-console.log("OfficerSelect: Getting reference to container for dropdown and event hub")
+// console.log("OfficerSelect: Getting reference to container for dropdown and event hub")
 
 eventHub.addEventListener("change", changeEvent => {
     if (changeEvent.target.id === "officerSelect") {
