@@ -3,8 +3,7 @@ import { useCriminals } from './CriminalProvider.js'
 
 const eventHub = document.querySelector(".container")
 
-// show the alibis for the selected criminal - because the click event in this case happens after the page load, we are placing it in a function to control when the event happens
-export const createAlibiListener = () => {
+// show the alibis for the selected criminal
     eventHub.addEventListener("alibiButtonClicked", eventObj => {
     console.log("Listening?", eventObj.detail.criminalId)
     // need to find the one criminal whose id matches the criminalId sent in the event
@@ -20,7 +19,6 @@ export const createAlibiListener = () => {
 
     AlibiList(foundCriminal)
 })
-}
 
 // a function that adds a list of alibis to the criminal card
 const AlibiList = (criminalObj) => {

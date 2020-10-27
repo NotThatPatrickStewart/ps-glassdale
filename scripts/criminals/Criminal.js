@@ -31,3 +31,17 @@ eventHub.addEventListener("click", (eventObj) => {
     }
 })
 
+eventHub.addEventListener("click", eventObj => {
+        const [nameOfId, witnessId] = eventObj.target.id.split("--")
+
+        if(eventObj.target.id.startsWith("witnesses--")){
+            console.log("button was clicked:", nameOfId, witnessId)
+
+        const customEvent = new CustomEvent("witnessButoonClicked", {
+            detail: {
+                witnessId: witnessId
+            }
+        })
+        eventHub.dispatchEvent(customEvent)
+        }
+})
