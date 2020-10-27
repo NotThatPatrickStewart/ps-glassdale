@@ -11,7 +11,6 @@ const render = () => {
     <input id="note--suspect" type="text" placeholder="Suspect Name Here" />
     <textarea id="note--note" placeholder="Your Note Here" ></textarea>
         <button id="saveNote">Save Note</button>
-
     `
 }
 
