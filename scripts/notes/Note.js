@@ -7,6 +7,7 @@ return `
     <p>Date of Interview: ${note.dateOfInterview}</p>
     <p>${note.noteText}</p>
     <p>Date of Entry: ${new Date(note.timestamp).toLocaleDateString('en-US')}</p>
+    <button id="deleteNote--${note.id}">Delete</button>
 </section>
 `
 }
