@@ -5,30 +5,41 @@
 
 import { getNotes, useNotes } from './NoteDataProvider.js'
 import { Note } from './Note.js'
+import { getCriminals, useCriminals } from '../criminals/CriminalProvider.js'
 
 // add reference to the notes container
 const notesContainer = document.querySelector(".notesContainer");
 const eventHub = document.querySelector(".container")
 
-eventHub.addEventListener("noteStateChanged", () => NoteList()) //syntax change to make it DRY so you don't need to put in the entire getNotes function below
+eventHub.addEventListener("noteStateChanged", () => NoteList())
 
 export const NoteList = () => {
-    getNotes().then(() => {
-        const allNotes = useNotes()  //allNotes is an array of objects at this point
+    getNotes()
+        .then(getCriminals) //Could also be .then(() => getCriminals()) These do the same thing, but are NOT the same thing
+        .then(() => {
+            const notes = useNotes()
+            // console.log("note array test:", notes)
+            const criminals = useCriminals()
 
-        render(allNotes)
-    })
+            render(notes, criminals)
+        })
 }
 
-const render = notesCollection => {
-    let noteHTMLRepresentation = ""
-    for (const note of notesCollection) {
+const render = (noteCollection, criminalCollection) => {
+    // debugger
+    let notesHTMLRepresentation = ""
+    for (const note of noteCollection) {
 
-        noteHTMLRepresentation += Note(note)
+        const relatedCriminal = criminalCollection.find(criminal => criminal.id === note.criminalId)
+        notesHTMLRepresentation += Note(note, relatedCriminal)
     }
-
+    console.log("notesHTMLRepresentation", notesHTMLRepresentation)
     notesContainer.innerHTML = `
-    ${noteHTMLRepresentation}
-        `
-    }
+    <h3>Case Notes</h3>
+    <div class="suspect"
+    ${notesHTMLRepresentation}
+  
+    </div>
+    `
         
+    }
