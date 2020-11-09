@@ -1,0 +1,12 @@
+{
+  "notes": [
+    {
+      "dateOfInterview": "2020-11-12",
+      "timestamp": 1604949349591,
+      "officer": "Joe",
+      "criminalId": 11,
+      "noteText": "test2",
+      "id": 6
+    }
+  ]
+}
