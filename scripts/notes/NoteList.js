@@ -3,7 +3,7 @@
 // iterate the notes >> make an html representation
 // render to the dom
 
-import { getNotes, useNotes } from './NoteDataProvider.js'
+import { deleteNote, getNotes, useNotes } from './NoteDataProvider.js'
 import { Note } from './Note.js'
 import { getCriminals, useCriminals } from '../criminals/CriminalProvider.js'
 
@@ -33,13 +33,26 @@ const render = (noteCollection, criminalCollection) => {
         const relatedCriminal = criminalCollection.find(criminal => criminal.id === note.criminalId)
         notesHTMLRepresentation += Note(note, relatedCriminal)
     }
-    console.log("notesHTMLRepresentation", notesHTMLRepresentation)
+    // console.log("notesHTMLRepresentation", notesHTMLRepresentation)
     notesContainer.innerHTML = `
     <h3>Case Notes</h3>
     <div class="suspect"
     ${notesHTMLRepresentation}
-  
     </div>
     `
-        
     }
+
+    eventHub.addEventListener("click", event => {
+        console.log("id found?", event)
+        if (event.target.id.startsWith("deleteNote--")) {
+            const [prefix, id] = event.target.id.split("--")
+
+            deleteNote(id).then(
+                () => {
+                    const updatedNotes = useNotes()
+                    const criminals = useCriminals()
+                    render(updatedNotes, criminals)
+                }
+            )
+        }
+    })
