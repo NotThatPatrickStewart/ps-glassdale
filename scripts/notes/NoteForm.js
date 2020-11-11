@@ -11,7 +11,7 @@ const render = (criminalCollection) => {
     <input id="note--dateOfInterview" type="date"/>
         <input id="note--officer" type="text" placeholder="Your Name Here"/>
         <select id="note--criminal" class="criminalSelect">
-            <option value="0">Please select a criminal</option>
+            <option value="0">Select a criminal</option>
             ${criminalCollection.map(
             criminal => {
                 return `<option value="${criminal.id}">${criminal.name}</option>`

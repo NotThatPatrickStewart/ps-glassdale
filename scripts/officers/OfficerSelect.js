@@ -28,7 +28,7 @@ export const officerSelect = () => {
 const render = officerCollection => {
     officerFilter.innerHTML = `
     <select class="dropdown" id="officerSelect">
-    <option value="0">Please select an arresting officer...</option>
+    <option value="0">Select an arresting officer</option>
     ${officerCollection.map(
         officerObj => {
             return `<option value="${officerObj.id}">${officerObj.name}</option>`

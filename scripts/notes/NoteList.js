@@ -43,7 +43,7 @@ const render = (noteCollection, criminalCollection) => {
     }
 
     eventHub.addEventListener("click", event => {
-        console.log("id found?", event)
+        // console.log("id found?", event)
         if (event.target.id.startsWith("deleteNote--")) {
             const [prefix, id] = event.target.id.split("--")
 
