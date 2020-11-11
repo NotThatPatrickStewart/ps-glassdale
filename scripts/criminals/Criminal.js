@@ -1,14 +1,21 @@
 const eventHub = document.querySelector(".container")
 
 // added id="criminal-${criminalObj.id}" so that we could target individual id's to populate alibis
-export const Criminal = (criminalObj) => {
+export const Criminal = (criminalObj, facilities) => {
     return `
 <div id="criminal-${criminalObj.id}" class="criminal">
-<p class="criminal__name">${criminalObj.name}</p>
-<p class="criminal__age">${criminalObj.age}</p>
-<p class="criminal__incarcerationStart">${new Date(criminalObj.incarceration.start).toLocaleDateString('en-US')}</p>
-<p class="criminal__incarcerationEnd">${new Date(criminalObj.incarceration.end).toLocaleDateString('en-US')}</p>
-<button id="associates--${criminalObj.id}">Associate Alibis</button>
+    <h3 class="criminal__name">Suspect: ${criminalObj.name}</h3>
+    <p class="criminal__age">Age: ${criminalObj.age}</p>
+    <p class="arresting__officer">Arresting Officer: ${criminalObj.arrestingOfficer}</p>
+    <p class="criminal__incarcerationStart">Sentenced: ${new Date(criminalObj.incarceration.start).toLocaleDateString('en-US')}</p>
+    <p class="criminal__incarcerationEnd">Released: ${new Date(criminalObj.incarceration.end).toLocaleDateString('en-US')}</p>
+        <div>
+            <h3>Facilities:</h3>
+            <ul>
+                ${facilities.map(fac => `<li>${fac.facilityName}</li>`).join("")}
+            </ul>
+        </div>
+    <button id="associates--${criminalObj.id}">Associate Alibis</button>
 </div>
 `
 }
