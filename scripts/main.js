@@ -11,6 +11,7 @@ import { witnessButton } from './witnesses/WitnessButton.js'
 import { getNotes } from './notes/NoteDataProvider.js'
 import { getCriminals } from './criminals/CriminalProvider.js'
 import { facilityButton } from './facility/FacilityButton.js'
+import './facility/FacilityList.js'
 
 
 CriminalList()

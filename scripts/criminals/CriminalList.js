@@ -8,6 +8,10 @@ import { getCriminalFacilities, useCriminalFacilities } from "../facility/Crimin
 const criminalsContainer = document.querySelector(".criminalsContainer")
 const eventHub = document.querySelector(".container")
 
+let criminalCollection =[]
+let facilitiesArray = []
+let criminalFacilitiesArray = []
+
 eventHub.addEventListener("CrimeChosen", event => {
     if (event.detail.crimeThatWasChosen !== "0") {
         // console.log("event:", event)
@@ -19,14 +23,14 @@ eventHub.addEventListener("CrimeChosen", event => {
         const matchingCriminals = useCriminals().filter(criminal => {
             return criminal.conviction === foundCrime.name
         })
-        render(matchingCriminals)
+        render(matchingCriminals, facilitiesArray, criminalFacilitiesArray)
     }
 })
 
 eventHub.addEventListener("officerChosen", event => {
     if (event.detail.officer !== "0") {
         // console.log("CriminalList: officerSelected custom event has been heard on the event hub, selected officer name: ", selectedOfficerName)
-        console.log("event", event)
+        // console.log("event", event)
 
         const officerId = event.detail.officer
         const foundOfficer = useOfficers().find(arrestingOfficer => {
@@ -35,16 +39,14 @@ eventHub.addEventListener("officerChosen", event => {
         const matchingCriminals = useCriminals().filter(criminal => {
             return criminal.arrestingOfficer === foundOfficer.name
         })
-        render(matchingCriminals)
+        render(matchingCriminals, facilitiesArray, criminalFacilitiesArray)
     }
 })
 
 
-const render = (criminalCollection, facilityCollection, relationshipCollection) => {
-    // let criminalsHTMLRepresentation = ""
-    // for (const criminal of criminalCollection)
 
-    //     criminalsHTMLRepresentation += Criminal(criminal)
+const render = (criminalCollection, facilityCollection, relationshipCollection) => {
+
     //iterate all criminals
     criminalsContainer.innerHTML = ` <h2>Criminals of Glassdale</h2>
     <section class="criminalsList">
@@ -73,10 +75,12 @@ export const CriminalList = () => {
         .then(getCriminalFacilities)
         .then(
             () => {
-                const criminalsArray = useCriminals()
-                const facilitiesArray = useFacilities()
-                const criminalFacilitiesArray = useCriminalFacilities()
-                render(criminalsArray, facilitiesArray, criminalFacilitiesArray)
+                criminalCollection = useCriminals()
+                facilitiesArray = useFacilities()
+                criminalFacilitiesArray = useCriminalFacilities()
+                    render(criminalCollection, facilitiesArray, criminalFacilitiesArray)
                 // console.log("criminals array:", criminalsArray, "facilities array:", facilitiesArray, "criminal facilities array:", criminalFacilitiesArray)
             })
 }
+
+

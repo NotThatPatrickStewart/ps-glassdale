@@ -12,7 +12,7 @@ export const facilityButton = () => {
 eventHub.addEventListener("click", event => {
     if(event.target.id === "facilityButton") {
         const event = new CustomEvent("facilitiesButtonClicked")
-        console.log("Facility Button Click", event)
+        // console.log("Facility Button Click", event)
         eventHub.dispatchEvent(event)
     }
 })
