@@ -23,7 +23,8 @@ eventHub.addEventListener("CrimeChosen", event => {
         const matchingCriminals = useCriminals().filter(criminal => {
             return criminal.conviction === foundCrime.name
         })
-        render(matchingCriminals, facilitiesArray, criminalFacilitiesArray)
+        criminalCollection = matchingCriminals
+        render()
     }
 })
 
@@ -39,13 +40,14 @@ eventHub.addEventListener("officerChosen", event => {
         const matchingCriminals = useCriminals().filter(criminal => {
             return criminal.arrestingOfficer === foundOfficer.name
         })
-        render(matchingCriminals, facilitiesArray, criminalFacilitiesArray)
+        criminalCollection = matchingCriminals
+        render()
     }
 })
 
 
 
-const render = (criminalCollection, facilityCollection, relationshipCollection) => {
+const render = () => {
 
     //iterate all criminals
     criminalsContainer.innerHTML = ` <h2>Criminals of Glassdale</h2>
@@ -53,11 +55,11 @@ const render = (criminalCollection, facilityCollection, relationshipCollection) 
     ${criminalCollection.map(
         (criminalObj) => {
             //filter all relationships to get only those for this criminal
-            const facilitiesForGivenCriminal = relationshipCollection.filter(crimFac => crimFac.criminalId === criminalObj.id)
+            const facilitiesForGivenCriminal = criminalFacilitiesArray.filter(crimFac => crimFac.criminalId === criminalObj.id)
 
             //convert the relationships to facilities with .map()
             const facilities = facilitiesForGivenCriminal.map(crimFac => {
-                const matchingFacilityObj = facilityCollection.find(facility => facility.id === crimFac.facilityId)
+                const matchingFacilityObj = facilitiesArray.find(facility => facility.id === crimFac.facilityId)
                 return matchingFacilityObj
             })
                 // console.log("facilities", facilities)
@@ -78,7 +80,7 @@ export const CriminalList = () => {
                 criminalCollection = useCriminals()
                 facilitiesArray = useFacilities()
                 criminalFacilitiesArray = useCriminalFacilities()
-                    render(criminalCollection, facilitiesArray, criminalFacilitiesArray)
+                    render()
                 // console.log("criminals array:", criminalsArray, "facilities array:", facilitiesArray, "criminal facilities array:", criminalFacilitiesArray)
             })
 }
